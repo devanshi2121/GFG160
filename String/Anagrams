@@ -1,0 +1,59 @@
+Brute Force -
+Time Complexity: O(m*log(m) + n*log(n)), where m and n are length of string s1 and s2 respectively.
+Auxiliary Space: O(1) where the strings are mutable but O(n) in languages like Java, Python, C#, etc. where strings are immutable.
+class Solution {
+    // Function is to check whether two strings are anagram of each other or not.
+    public static boolean areAnagrams(String s1, String s2) {
+        // Your code here
+        char[] s1Array = s1.toCharArray();
+        char[] s2Array = s2.toCharArray();
+        Arrays.sort(s1Array);
+        Arrays.sort(s2Array);
+        return Arrays.equals(s1Array, s2Array);
+    }
+}
+
+Better Approach-
+Time Complexity: O(m + n), where m and n are length of string s1 and s2 respectively.
+Auxiliary Space: O(26) = O(1)
+class Solution {
+    // Function is to check whether two strings are anagram of each other or not.
+    public static boolean areAnagrams(String s1, String s2) {
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        for (char ch : s1.toCharArray()) 
+            charCount.put(ch, charCount.getOrDefault(ch, 0) + 1);
+        for (char ch : s2.toCharArray()) 
+            charCount.put(ch, charCount.getOrDefault(ch, 0) - 1);
+        for (var pair : charCount.entrySet()) {
+            if (pair.getValue() != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+Optimal Approach-
+Time Complexity: O(m + n), where m and n are length of string s1 and s2 respectively.
+Auxiliary Space: O(MAX_CHAR) = O(26) = O(1)
+class Solution {
+    // Function is to check whether two strings are anagram of each other or not.
+    public static boolean areAnagrams(String s1, String s2) {
+        if(s1.length()!=s2.length()){
+            return false;
+        }
+        int[] a=new int[26];
+        for(int i=0;i<s1.length();i++){
+            a[s1.charAt(i)-'a']++;
+        }
+        for(int i=0;i<s2.length();i++){
+            a[s2.charAt(i)-'a']--;
+        }
+        for(int i=0;i<a.length;i++){
+            if(a[i]!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
