@@ -1,0 +1,45 @@
+Brute Force- S(c)-O(n)
+class Solution {
+    public void reverseArray(int a[]) {
+        // code here
+        int n=a.length;
+        int[] ans = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+           ans[n - i - 1] = a[i];
+        }
+        for(int i=0;i<n;i++){
+            a[i]=ans[i];
+        }
+    }
+}
+
+
+Space Optimised Swapping-
+class Solution {
+    public void reverseArray(int arr[]) {
+        // code here
+        int i=0,j=arr.length-1;
+        while(i<j){
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            i++;
+            j--;
+        }
+    }
+}
+
+Recursive Approach-
+class Solution {
+    public void reverseArray(int a[]) {
+       reverseArray(a,0,a.length-1);
+    }
+    public void reverseArray(int a[],int i,int j){
+        while(i<j){
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+            reverseArray(a,i+1,j-1);
+        }
+    }
+}
