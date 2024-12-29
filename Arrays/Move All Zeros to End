@@ -1,0 +1,56 @@
+Brute Force- T(c) - O(n), S(c)-O(n)
+class GfG {
+    static void pushZerosToEnd(int[] arr) {
+        int n = arr.length;
+        int[] temp = new int[n];
+        int j = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0)
+                temp[j++] = arr[i];
+        }
+        while (j < n)
+            temp[j++] = 0;
+        for (int i = 0; i < n; i++)
+            arr[i] = temp[i];
+    }
+}
+
+Better Approach - 
+Two Traversals T(c)-O(n), S(c)-O(1)
+class Solution {
+    void pushZerosToEnd(int[] arr) {
+        // code here
+        int count=0;
+        for(int i:arr){
+            if(i==0){
+                count++;
+            }
+        }
+        int idx=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]!=0){
+               arr[idx++]=arr[i];   
+            }
+        }
+        for(int i=0;i<count;i++){
+            arr[idx++]=0;
+        }
+    }
+}
+
+Optimal Approach-
+One Traversal-
+class Solution {
+    void pushZerosToEnd(int[] arr) {
+        // code here
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                int temp = arr[i];
+                arr[i] = arr[count];
+                arr[count] = temp;
+                count++;
+            }
+        }
+    }
+}
