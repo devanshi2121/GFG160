@@ -1,0 +1,19 @@
+class Solution {
+    // Function to find hIndex
+    public int hIndex(int[] citations) {
+        // code here
+        int[] count=new int[citations.length+1];
+        for(int cit:citations){
+            count[Math.min(cit,citations.length)]++;
+        }
+        int hindex=citations.length;
+        int currsum=0;
+        for(int i=citations.length;i>=0;i--){
+            currsum+=count[i];
+            if(currsum>=i){
+                return i;
+            }
+        }
+        return hindex;
+    }
+}
