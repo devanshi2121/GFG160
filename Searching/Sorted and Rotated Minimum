@@ -1,0 +1,36 @@
+T(c)-O(n)
+class Solution {
+    public int findMin(int[] arr) {
+        // complete the function here
+        int res=arr[0];
+        for(int i=1;i<arr.length;i++){
+            res=Math.min(arr[i],res);
+        }
+        return res;
+    }
+}
+
+T(c)-O(logn)
+class Solution {
+    public int findMin(int[] arr) {
+        // complete the function here
+        int ans=Integer.MAX_VALUE;
+        int low=0,high=arr.length-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[low]<=arr[high]){
+                ans = Math.min(arr[low],ans);
+                break;
+            }
+            if(arr[mid]<arr[high]){
+                ans=Math.min(ans,arr[mid]);
+                high=mid-1;
+            }else{
+                ans=Math.min(ans,arr[low]);
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+}
+
