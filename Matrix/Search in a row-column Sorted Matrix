@@ -1,0 +1,17 @@
+class Solution {
+    public static boolean matSearch(int arr[][], int x) {
+        int r=arr.length-1;
+        int c=0;
+        while(r>=0 && c<=arr[0].length-1){
+            if(arr[r][c]==x){
+                return true;
+            }
+            else if(arr[r][c]>x){
+                r--;
+            }else{
+                c++;
+            }
+        }
+        return false;
+    }
+}
