@@ -1,0 +1,18 @@
+T(c)- O(n*nlogn)
+S(c)- O(m+n)
+class Solution {
+    public long kthElement(int k, int arr1[], int arr2[]) {
+        int m=arr1.length;
+        int n=arr2.length;
+        int[] ans=new int[m+n];
+        for(int i=0;i<m;i++){
+            ans[i]=arr1[i];
+        }
+        int idx=0;
+        for(int i=m;i<m+n;i++){
+            ans[i]=arr2[idx++];
+        }
+        Arrays.sort(ans);
+        return ans[k-1];
+    }
+}
