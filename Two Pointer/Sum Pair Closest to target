@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> sumClosest(int[] arr, int target) {
+        List<Integer> ans = new ArrayList<>();
+        Arrays.sort(arr);
+        int low = 0, high = arr.length - 1;
+        int closestDiff = Integer.MAX_VALUE; 
+        while (low < high) {
+            int sum = arr[low] + arr[high];
+            int diff = Math.abs(target - sum);
+            if (diff < closestDiff) {
+                closestDiff = diff;
+                ans.clear(); 
+                ans.add(arr[low]);
+                ans.add(arr[high]);
+            }
+            if (sum < target) {
+                low++; 
+            } else {
+                high--; 
+            }
+        }
+        return ans;
+    }
+}
