@@ -1,0 +1,30 @@
+class Solution {
+    int countPairs(int arr[], int target) {
+        // Complete the function
+        int cnt=0;
+        int low=0,high=arr.length-1;
+        while(low<=high){
+            if(arr[low]+arr[high]==target){
+                int cnt1 = 0, cnt2 = 0;
+                int ele1 = arr[low], ele2 = arr[high];
+                while (low <= high && arr[low] == ele1) {
+                    low++;
+                    cnt1++;
+                }
+                while (low <= high && arr[high] == ele2) {
+                    high--;
+                    cnt2++;
+                }
+                if (ele1 == ele2) 
+                    cnt += (cnt1 * (cnt1 - 1)) / 2;
+                else 
+                    cnt += (cnt1 * cnt2);
+            }else if(arr[low]+arr[high]<target){
+                low++;
+            }else{
+                high--;
+            }
+        }
+        return cnt;
+    }
+}
