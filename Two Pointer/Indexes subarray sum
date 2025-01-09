@@ -1,0 +1,20 @@
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        // code here
+        for(int i=0;i<arr.length;i++){
+            int sum=0;
+            for(int j=i;j<arr.length;j++){
+                sum+=arr[j];
+                if(sum==target){
+                    ArrayList<Integer> result = new ArrayList<>();
+                    result.add(i + 1); 
+                    result.add(j + 1); 
+                    return result;
+                }
+            }
+        }
+       ArrayList<Integer> result = new ArrayList<>();
+                    result.add(-1);
+                    return result;
+    }
+}
