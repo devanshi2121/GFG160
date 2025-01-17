@@ -1,0 +1,44 @@
+Brute force- O(n*n)- TLE
+class Solution {
+    public static int[] productExceptSelf(int arr[]) {
+        // code here
+        int[] res=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            int prod=ProductAll(i,arr);
+            res[i]=prod;
+        }
+        return res;
+    }
+    public static int ProductAll(int j,int[] arr){
+        int pro=1;
+        for(int i=0;i<arr.length;i++){
+            if(i!=j){
+                pro*=arr[i];
+            }
+        }
+        return pro;
+    } 
+}
+
+Optimised Approach- O(n)-
+class Solution {
+    public static int[] productExceptSelf(int arr[]) {
+        // code here
+        int n=arr.length;
+        int[] preprod=new int[n];
+        int[] sufprod=new int[n];
+        preprod[0]=1;
+        for(int i=1;i<arr.length;i++){
+            preprod[i]=preprod[i-1]*arr[i-1];
+        }
+        sufprod[n-1]=1;
+        for(int i=n-2;i>=0;i--){
+            sufprod[i]=sufprod[i+1]*arr[i+1];
+        }
+        int[] res=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            res[i]=preprod[i]*sufprod[i];
+        }
+        return res;
+    }
+}
