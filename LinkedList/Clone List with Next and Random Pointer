@@ -1,0 +1,18 @@
+class Solution {
+    public Node cloneLinkedList(Node head) {
+        Map<Node, Node> mp = new HashMap<>();
+        Node curr = head;
+        while (curr != null) {
+            mp.put(curr, new Node(curr.data));
+            curr = curr.next;
+        }
+        curr = head;
+        while (curr != null) {
+            Node newNode = mp.get(curr);
+            newNode.next = mp.get(curr.next);
+            newNode.random = mp.get(curr.random);
+            curr = curr.next;
+        }
+        return mp.get(head);
+    }
+}
