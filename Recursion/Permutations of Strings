@@ -1,0 +1,27 @@
+class Solution {
+    public ArrayList<String> findPermutation(String s) {
+        ArrayList<String> ans=new ArrayList<>();
+        HashSet<String> set=new HashSet<>();
+        StringBuilder str=new StringBuilder(s);
+        solve(0,str,set);
+        ans.addAll(set);
+        Collections.sort(ans);
+        return ans;
+    }
+    public void solve(int idx,StringBuilder str,HashSet<String> ans){
+        if(idx==str.length()){
+            ans.add(str.toString());
+            return;
+        }
+        for(int i=idx;i<str.length();i++){
+            swap(str,idx,i);
+            solve(idx+1,str,ans);
+            swap(str,idx,i);
+        }
+    }
+    public void swap(StringBuilder s,int i,int j){
+        char temp=s.charAt(i);
+        s.setCharAt(i,s.charAt(j));
+        s.setCharAt(j,temp);
+    }
+}
