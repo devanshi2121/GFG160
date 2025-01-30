@@ -1,0 +1,9 @@
+class Solution {
+    double power(double b, int e) {
+        if (e == 0)
+            return 1;
+        if (e < 0)
+            return 1 / power(b, -e);
+        return b * power(b, e - 1);
+    }
+}
